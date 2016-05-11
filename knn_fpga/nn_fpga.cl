@@ -1,7 +1,6 @@
 #define WORK_GROUP_SIZE 256
 #define GLOBAL_SIZE 32768
 global float dist[GLOBAL_SIZE]; //on-chip global buffer
-
 __kernel __attribute__ ((reqd_work_group_size(WORK_GROUP_SIZE, 1, 1)))
 void distance_calc(__global float2 *d_locations,
                      const float lat,
