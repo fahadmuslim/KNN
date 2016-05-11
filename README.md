@@ -3,7 +3,7 @@ k-Nearest Neighbor algorithm
 ## Overview:
 This project deals with using SDAccel to implement the k-Nearest Neighbor algorithm onto a Xilinx FPGA. The nearest neighbor algorithm is used to find the _k_ nearest neighbors of a specified point among a set of unstructured data points. It is widely used in a diverse range of domains and applications such as pattern recognition, machine learning, computer vision and coding theory to name a few. For a set _S_ of _n_ reference data points in d-dimensional space and a query point _q_, k-nearest neighbor algorithm would find _k_ closest points in _S_ from the point _q_. This is illustrated in the accompanying figure for k=3 and n=12. The red triangle represents the query point while the blue diamonds represent the points in the reference data set in Figure 1.
  
-<center>![alt text](./figures/knn.png)</center>
+<center>![alt text](./figures/knn.png)</center>  
 <center>Figure 1: Pictorial demonstration of KNN search algorithm</center>
 The algorithm can be classified into the following main steps:  
 1.	Compute *n* distances between the query point *q* and the *n* reference points of the set *S*. The distances in our case are the squared Euclidean distances which for a given set of two 2-dimensional points _(x<sub>1</sub>,y<sub>1</sub>)_ and _(x<sub>2</sub>,y<sub>2</sub>)_ are given as follows:  
