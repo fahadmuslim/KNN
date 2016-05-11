@@ -30,7 +30,7 @@ void NearestNeighbor (__global float *d_distances,
                       __global int *indices,
                       const int resultsCount) {
   int localId = get_local_id(0);
-  if (localId < 5) {
+  if (localId < resultsCount) {
   int index1 = localId;
   float val,tempDist;
   __attribute__((xcl_pipeline_loop))
