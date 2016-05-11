@@ -8,7 +8,7 @@ This project deals with using SDAccel to implement the k-Nearest Neighbor algori
 
 The algorithm can be classified into the following main steps:  
 1.	Compute *n* distances between the query point *q* and the *n* reference points of the set *S*. The distances in our case are the squared Euclidean distances which for a given set of two 2-dimensional points _(x<sub>1</sub>,y<sub>1</sub>)_ and _(x<sub>2</sub>,y<sub>2</sub>)_ are given as follows:  
-<center>_d = (x<sub>1</sub> - x<sub>2</sub>)<sup>2</sup> + (y<sub>1</sub> - y<sub>2</sub>)<sup>2</sup></center>_
+<center>_d = (x<sub>1</sub> - x<sub>2</sub>)<sup>2</sup> + (y<sub>1</sub> - y<sub>2</sub>)<sup>2</sup></center>_  
 2.	Sort the _n_ distances while preserving their original indices (as specified in _S_).  
 3.	The _k_ nearest neighbors would be the _k_ points from the set _S_ corresponding to the lowest distances of the sorted distance array.  
 	
