@@ -28,7 +28,7 @@ create_compute_unit -opencl_binary [get_opencl_binary nn] -kernel [get_kernels N
 compile_emulation -flow cpu -opencl_binary [get_opencl_binary nn]
 
 # Generate the system estimate report
-#report_estimate
+report_estimate
 
 # Run the design in CPU emulation mode
 run_emulation -flow cpu -args "nn.xclbin" 
