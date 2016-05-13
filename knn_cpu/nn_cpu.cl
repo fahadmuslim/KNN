@@ -1,4 +1,6 @@
 #define WORK_GROUP_SIZE 256
+// This computes the distance of all points in d_locations from the given 
+// longitude and latitude, and returns it in d_distances.
 __kernel __attribute__ ((reqd_work_group_size(WORK_GROUP_SIZE , 1, 1)))
 void NearestNeighbor(__global float2 *d_locations,
 		     __global float *d_distances,
