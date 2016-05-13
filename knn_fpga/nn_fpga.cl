@@ -9,19 +9,16 @@ __kernel __attribute__ ((reqd_work_group_size(WORK_GROUP_SIZE, 1, 1)))
 void distance_calc(__global float2 *d_locations,
                      const float lat,
 		     const float lng) {
-  local float lat_local[WORK_GROUP_SIZE];
-  local float lng_local[WORK_GROUP_SIZE];
-  __attribute__((xcl_pipeline_workitems)) {
+    __attribute__((xcl_pipeline_workitems)) {
 
-  int localId = get_local_id(0);
   int globalId = get_global_id(0);
-  float dist_lat, dist_lng;
+  float lat_tmp, lng_tmp, dist_lat, dist_lng;
 
-  lat_local[localId] = d_locations[globalId].x;
-  lng_local[localId] = d_locations[globalId].y;
+  lat_tmp = d_locations[globalId].x;
+  lng_tmp = d_locations[globalId].y;
 
-  dist_lat = lat-lat_local[localId];
-  dist_lng = lng-lng_local[localId];
+  dist_lat = lat-lat_tmp;
+  dist_lng = lng-lng_tmp;
 
   //squared euclidean distance calculation
   dist[globalId] = (dist_lat*dist_lat) + (dist_lng*dist_lng);
