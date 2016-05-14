@@ -98,17 +98,17 @@ LUTs             |      2042 (0.47%)
 
 platform         |     time     | power(W)| energy(J)   
 :--------------- | ------------:| -------:| ----------  
-Virtex 7         |    0.0044ms  |  3.027  |   0.000013  
-GTX 960          |    0.331ms   |  120    |   0.0397    
-K4200            |    0.451ms   |  108    |   0.0487  
+Virtex 7         |    1.87µs    |  3.039  |   0.0000057  
+GTX 960          |    0.198ms   |  120    |   0.02376    
+K4200            |    0.373ms   |  108    |   0.04028  
   
 
 Area Utilization |     Values     
 :--------------- | ------------  
 BRAMs            |      32 (2.18%)   
 DSPs             |      12 (0.33%)  
-FFs              |      24907 (2.90%)  
-LUTs             |      12583 (2.93%) 
+FFs              |      23779 (2.77%)  
+LUTs             |      11595 (2.70%) 
          
 ## More Information
  * [SDAccel User Guide](http://www.xilinx.com/support/documentation/sw_manuals/xilinx2015_1/ug1023-sdaccel-user-guide.pdf)
