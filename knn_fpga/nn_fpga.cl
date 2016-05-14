@@ -14,6 +14,7 @@ void distance_calc(__global float2 *d_locations,
   int globalId = get_global_id(0);
   float lat_tmp, lng_tmp, dist_lat, dist_lng;
 
+  // using temporaries for the latitude and longitude
   lat_tmp = d_locations[globalId].x;
   lng_tmp = d_locations[globalId].y;
 
