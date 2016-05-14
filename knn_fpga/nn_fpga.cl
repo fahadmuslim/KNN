@@ -29,26 +29,29 @@ void distance_calc(__global float2 *d_locations,
 __kernel __attribute__ ((reqd_work_group_size(WORK_GROUP_SIZE,1,1)))
 void NearestNeighbor (__global float *d_distances,
                       __global int *indices,
-                      const int resultsCount) {
+                        const int resultsCount) {
+  __local float dmin1; {
   int localId = get_local_id(0);
   if (localId < resultsCount) {
-    int index1 = localId;
-    float val,tempDist;
-    __attribute__((xcl_pipeline_loop))
-    for (int k=localId; k < WORK_GROUP_SIZE; k++) {
-      val = dist[k];
-      if (val < dist[index1]) index1 = k;
-    }
+  float dist1;
+  float dmin = MAXFLOAT;
+  int count = 0;
 
-    // swap distances 
-    tempDist = dist[localId];
-    dist[localId] = dist[index1];
-    dist[index1] = tempDist;
-  
-    // first WG used to ensure that the indices of the neighbors are preserved       
-    if (get_group_id(0)==0) {
-      d_distances[localId] = dist[localId];
-      indices[localId] = index1;
+  if (localId == 0) {
+  dmin1 = 0.0f;}
+ 
+  __attribute__((xcl_pipeline_loop))
+  for (int k = 0; k < WORK_GROUP_SIZE; k++) {
+  dist1 = dist[k];
+  if (dist1 < dmin && dist1 > dmin1) {
+  dmin = dist1;
+  count = k;}
+  if (k == WORK_GROUP_SIZE-1) {
+  dmin1 = dmin;
+  indices[localId] = count;
+  d_distances[localId] = dmin;} 
+      }
     }
   } 
-} 
+}
+
