@@ -80,11 +80,11 @@ The FPGA vs GPU performance comparison for the "knn\_cpu" and "knn\_fpga" implem
 
 **knn\_cpu**  
 
-platform         |     time     | power(W)| energy(J)   
-:--------------- | ------------:| -------:| ----------  
-Virtex 7         |    0.587ms   |  0.412  |   0.000056  
-GTX 960          |    0.528ms   |  120    |   0.00936  
-K4200            |    0.603ms   |  108    |   0.0144 
+Platform         |     Time     | Power(W) |  Energy(J)   
+:--------------- | ------------:| --------:| ----------  
+Virtex 7         |    0.587ms   |  0.412   |   0.000056  
+GTX 960          |    0.528ms   |  120     |   0.00936  
+K4200            |    0.603ms   |  108     |   0.0144 
 
 Area Utilization |     Values     
 :--------------- | ------------  
@@ -96,11 +96,11 @@ LUTs             |      2042 (0.47%)
 
 **knn\_fpga**
 
-platform         |     time     | power(W)| energy(J)   
-:--------------- | ------------:| -------:| ----------  
-Virtex 7         |    1.87µs    |  3.039  |   0.0000057  
-GTX 960          |    0.198ms   |  120    |   0.02376    
-K4200            |    0.373ms   |  108    |   0.04028  
+Platform         |    Time      | Power(W) |  Energy(J)   
+:--------------- | ------------:| --------:| ----------  
+Virtex 7         |    1.87µs    |  3.039   |   0.0000057  
+GTX 960          |    0.198ms   |  120     |   0.02376    
+K4200            |    0.373ms   |  108     |   0.04028  
   
 
 Area Utilization |     Values     
