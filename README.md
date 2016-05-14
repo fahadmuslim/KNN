@@ -80,7 +80,7 @@ The FPGA vs GPU performance comparison for the "knn\_cpu" and "knn\_fpga" implem
 
 **knn\_cpu**  
 
-Platform         |     Time     | Power(W) |  Energy(J)   
+Platform         |   Time       | Power(W) |  Energy(J)   
 :--------------- | ------------:| --------:| ----------  
 Virtex 7         |    0.587ms   |  0.412   |   0.000056  
 GTX 960          |    0.528ms   |  120     |   0.00936  
