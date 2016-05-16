@@ -1,4 +1,5 @@
-#define WORK_GROUP_SIZE 256
+#include "params.h"
+
 // This computes the distance of all points in d_locations from the given 
 // longitude and latitude, and returns it in d_distances.
 __kernel __attribute__ ((reqd_work_group_size(WORK_GROUP_SIZE , 1, 1)))

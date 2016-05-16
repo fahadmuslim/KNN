@@ -7,10 +7,9 @@
 #include <CL/opencl.h>
 #include <algorithm>
 #include <sys/time.h>
+#include "param.h"
 
-#define CL_USE_DEPRECATED_OPENCL_1_1_APIS // to sort compatibility issues b/w various OCL libraries
-#define REC_LENGTH 49 // size of a record in the filelist
-#define LOCAL_SIZE 256 // work group size set here!
+#define CL_USE_DEPRECATED_OPENCL_1_1_APIS // to solve compatibility issues b/w various OCL libraries
 
 typedef struct record
 {
@@ -73,9 +72,9 @@ int main(int argc, char *argv[]) {
   std::vector<Record> records;
   std::vector<cl_float2> locations;
   int i;
-  char filename[100];
-  int resultsCount=5,quiet=0,timing=0;
-  float lat=30.0,lng=90.0;
+  char filename[1024];
+  int resultsCount=NUM_NEIGHBORS,quiet=0,timing=0;
+  float lat=QUERY_LAT,lng=QUERY_LNG;
   
   cl_context context;
   cl_context_properties properties[3];
@@ -100,16 +99,16 @@ int main(int argc, char *argv[]) {
   while(!feof(fp)) {
     Record record;
     cl_float2 latLong;
-    fgets(record.recString,49,fp);
+    fgets(record.recString,REC_LENGTH,fp);
     fgetc(fp); // newline
     if (feof(fp)) break;
   
     // parse for lat and long
-    char str[49];
+    char str[REC_LENGTH];
     strncpy(str,record.recString,sizeof(str));
     int year, month, date, hour, num, speed, press;
     float lat, lon;
-    char name[30];
+    char name[REC_LENGTH];
     sscanf(str, "%d %d %d %d %d %s %f %f %d %d", &year, 
       &month, &date, &hour, &num, name, &lat,   &lon, &speed, &press);    
     latLong.x = lat;
@@ -202,7 +201,7 @@ int main(int argc, char *argv[]) {
   // enqueue kernel for execution
   size_t globalWorkSize[1],localWorkSize[1];
   globalWorkSize[0] = numRecords;
-  localWorkSize[0] = LOCAL_SIZE;
+  localWorkSize[0] = WORK_GROUP_SIZE;
   if (numRecords % 64) globalWorkSize[0] += 64 - (numRecords % 64);
           
   clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL, 

@@ -1,5 +1,5 @@
-#define WORK_GROUP_SIZE 256
-#define GLOBAL_SIZE 32768
+#include "params.h"
+
 global float dist[GLOBAL_SIZE]; //on-chip global buffer
 
 // This computes the distance of all points in d_locations from the given 
