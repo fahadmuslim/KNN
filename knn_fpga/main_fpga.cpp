@@ -208,7 +208,7 @@ int main(int argc, char *argv[]) {
   // enqueue kernel for execution
   size_t globalWorkSize2[1];
   size_t local2[1];
-  local2[0] = LOCAL_WORK_SIZE;
+  local2[0] = WORK_GROUP_SIZE;
   globalWorkSize2[0] = numRecords;//Total number of work items to execute a kernel
   if (numRecords % 64) globalWorkSize2[0] += 64 - (numRecords % 64);
     

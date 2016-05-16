@@ -26,11 +26,13 @@ KNN
 └── knn_cpu
 │   │   main_cpu.cpp 
 │   │   nn_cpu.cl     
+│   │   params.h
 │   └─  solution_cpu.tcl
 │
 └── knn_fpga
     │   main_fpga.cpp
     │   nn_fpga.cl
+│   │   params.h
     └─  solution_fpga.tcl
 ```  
 
