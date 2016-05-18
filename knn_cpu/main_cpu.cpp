@@ -7,7 +7,7 @@
 #include <CL/opencl.h>
 #include <algorithm>
 #include <sys/time.h>
-#include "param.h"
+#include "params.h"
 
 #define CL_USE_DEPRECATED_OPENCL_1_1_APIS // to solve compatibility issues b/w various OCL libraries
 

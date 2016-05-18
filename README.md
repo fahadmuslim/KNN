@@ -26,11 +26,13 @@ KNN
 └── knn_cpu
 │   │   main_cpu.cpp 
 │   │   nn_cpu.cl     
+│   │   params.h
 │   └─  solution_cpu.tcl
 │
 └── knn_fpga
     │   main_fpga.cpp
     │   nn_fpga.cl
+    │   params.h
     └─  solution_fpga.tcl
 ```  
 
@@ -51,7 +53,9 @@ KNN
 
 ### Parameters
 The number of nearest neighbors to be returned, the required work group size and the maximum size of an input file line are defined in "params.h"
- 
+
+In the "two kernel" implementation, the size of the inter-kernel on-chip global memory buffer is also specified. Note that SDAccel implements it using a streaming buffer, hence its specific size does not actually matter.  
+
 ### How to run an example      
 The code has been tested with Xilinx SDAccel 2015.1.
     
