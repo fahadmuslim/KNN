@@ -121,7 +121,7 @@ int main(int argc, char *argv[]) {
   fclose(fp);
 
   if (!quiet) {
-    printf("Number of records: %d\n",numRecords);
+    printf("Number of points in reference data set: %d\n",numRecords);
     printf("latitude: %f\n",lat);
     printf("longitude: %f\n",lng);
     printf("Finding the %d closest neighbors.\n",resultsCount);
@@ -202,7 +202,6 @@ int main(int argc, char *argv[]) {
   size_t globalWorkSize[1],localWorkSize[1];
   globalWorkSize[0] = numRecords;
   localWorkSize[0] = WORK_GROUP_SIZE;
-  if (numRecords % 64) globalWorkSize[0] += 64 - (numRecords % 64);
           
   clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL, 
     (size_t*)&globalWorkSize, (size_t*)&localWorkSize, 0, NULL, &kernelEvent);
