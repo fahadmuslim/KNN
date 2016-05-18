@@ -44,8 +44,7 @@ KNN
 **params.h** | Some constant parameters (see below).  
 **main\_cpu.cpp** | The host code for the implementation with nearest neighbor identification done on the host.  
 **nn\_cpu.cl** | The kernel which calculates all the distances and writes them to the host for nearest neighbors identification.  
-**solution\_cpu.tcl**   | Script for the "single kernel implementation" in SDAccel.    
-**params.h** | Some constant parameters (see below).
+**solution\_cpu.tcl**   | Script for the "single kernel implementation" in SDAccel.      
 **main\_fpga.cpp** | The host code for the "two kernel implementation" of the algorithm, where the distances are calculated by multiple work groups in one kernel and then the neighbors are computed by a single work-group (assuming that _k_ is small) in another kernel.  
 **nn\_fpga.cl** | The OpenCL code using global memory buffers to stream data between two kernels. One of the kernels calculates the distance between the query point and all the points in the reference data set. The second kernel identifies the _k_ nearest neighbors using a single work-group.  
 **solution\_fpga.tcl** | Script for the "two kernel implementation" in SDAccel.    
@@ -75,7 +74,7 @@ We considered the following performance metrics:
 > Initiation Interval: Indicating the number of clock cycles between two consecutive iterations of a loop    
 > Latency: Indicating the number of clock cycles required to complete the execution of the entire kernel
 
-Both metrics have a profound effect on the execution time and energy consumption in case of an FPGA implementation.
+Both metrics have a profound effect on the execution time and energy consumption in case of an FPGA implementation. The various optimization options applied causes a significant reduction in the overall latency for the different implementations. The latency after optimization for the "knn\_cpu" case goes from 7433 clock cycles down to 294 clock cycles while for the "knn\_fpga" case, the best case latency reduces from 5901 clock cycles in the un-optimized case to 513 clock cycles in the optimized case. This improvement in turn shows up in the performance comparison tables given below.  
 
 ### Performance Comparison
 The FPGA vs GPU performance comparison for the "knn\_cpu" and "knn\_fpga" implementations in terms of execution time, power and energy consumption is described here. Note that in the "knn\_cpu" case, the nearest neighbors identification time on the host (the CPU) has also been added to the distance calculationn time on FPGA to get the total execution time. The sorting and neighbors identification time for "knn\_cpu" case is also reported. The devices used for comparison are the following:  
