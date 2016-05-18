@@ -41,8 +41,7 @@ KNN
 **knn\_cpu** | Contains the "single kernel implementation" of the algorithm. The nearest neighbors identification in this implementation is done on the host.   
 **knn\_fpga** | Contains the "two kernel implementation" of the algorithm, which uses a memory architecture optimization provided by SDAccel that implements the global memories used to communicate between the kernels as streaming buffers on the FPGA Block RAMs. The nearest neighbor identification in this case is done on the FPGA.  
 **filelist.txt** | Contains the points of a reference data set (32768 points).  
-**params.h** | Some constant parameters (see below).
-**nn\_cpu.cl** | The kernel which calculates all the distances and writes them to the host for nearest neighbors identification.  
+**params.h** | Some constant parameters (see below).  
 **main\_cpu.cpp** | The host code for the implementation with nearest neighbor identification done on the host.  
 **nn\_cpu.cl** | The kernel which calculates all the distances and writes them to the host for nearest neighbors identification.  
 **solution\_cpu.tcl**   | Script for the "single kernel implementation" in SDAccel.    
