@@ -78,7 +78,7 @@ We considered the following performance metrics:
 Both metrics have a profound effect on the execution time and energy consumption in case of an FPGA implementation.
 
 ### Performance Comparison
-The FPGA vs GPU performance comparison for the "knn\_cpu" and "knn\_fpga" implementations in terms of execution time, power and energy consumption is described here. Note that in the "knn\_cpu" case, the nearest neighbors identification time on the host (the CPU) has also been added to the total execution time. The sorting and neighbors identification time for "knn\_cpu" case is also presented.The devices used for comparison are the following:  
+The FPGA vs GPU performance comparison for the "knn\_cpu" and "knn\_fpga" implementations in terms of execution time, power and energy consumption is described here. Note that in the "knn\_cpu" case, the nearest neighbors identification time on the host (the CPU) has also been added to the distance calculationn time on FPGA to get the total execution time. The sorting and neighbors identification time for "knn\_cpu" case is also reported. The devices used for comparison are the following:  
 - NVIDIA GeForce GTX 960 with 1024 cores  
 - NVIDIA Quadro K4200 with 1344 cores  
 - Xilinx Virtex 7 xc7vx690tffg1157-2  
