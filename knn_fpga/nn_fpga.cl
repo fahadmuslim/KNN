@@ -16,8 +16,8 @@
 *
 * This OpenCL code has a kernel to calculate the distances     
 * between the query point and all the points in reference data set.
-* Another kernel is used to identify the nearest neighbors and to  
-* write them to the host.
+* A second kernel is used to identify the nearest neighbors.  
+* 
 *----------------------------------------------------------------------------
 */
 #include "params.h"
