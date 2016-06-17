@@ -75,7 +75,7 @@ We considered the following performance metrics:
 > Latency: Indicating the number of clock cycles required to complete the execution of the entire kernel
 
 Both metrics have a profound effect on the execution time and energy consumption in case of an FPGA implementation. The various optimization options applied cause a significant reduction in the overall latency for the different implementations. Both the cases use "reqd_work_group_size" attribute necessary to allow for performance optimization while generating custom logic for a kernel.    
-The latency after employing work-item pipeline optimization for the "knn\_cpu" case goes from 7433 clock cycles down to 294 clock cycles. For the "knn\_fpga" case, that uses the on-chip block RAMs to implement global memory buffers used for inter-kernel communication, the best case latency reduces to 513 clock cycles from 5901 clock cycles in the un-optimized case. This improvement in the overall latency shows up in the performance comparison tables given below.    
+The latency after employing work-item pipeline optimization for the "knn\_cpu" case goes from 7433 clock cycles down to 294 clock cycles. For the "knn\_fpga" case, that uses the on-chip block RAMs to implement global memory buffers used for inter-kernel communication, the best case latency reduces to 292 clock cycles from 5901 clock cycles in the un-optimized case. This improvement in the overall latency shows up in the performance comparison tables given below.    
 
 ### Performance Comparison
 The FPGA vs GPU performance comparison for the "knn\_cpu" and "knn\_fpga" implementations in terms of execution time, power and energy consumption is described here. Note that in the "knn\_cpu" case, the nearest neighbors identification time on the host (the CPU) has also been added to the distance calculation time on FPGA to get the total execution time. This "sorting and neighbors identification time" for "knn\_cpu" case is also reported below. The devices used for comparison are the following:  
@@ -103,7 +103,7 @@ LUTs             |      2042 (0.47%)
 
 Platform         |    Time      | Power(W) |  Energy(J)   
 :--------------- | ------------:| --------:| ----------  
-Virtex 7         |    1.87µs    |  3.039   |   0.0000057  
+Virtex 7         |    0.136s    |  3.033   |   0.00041  
 GTX 960          |    0.198ms   |  120     |   0.02376    
 K4200            |    0.373ms   |  108     |   0.04028  
   
@@ -112,8 +112,8 @@ Area Utilization |     Values
 :--------------- | ------------  
 BRAMs            |      32 (2.18%)   
 DSPs             |      12 (0.33%)  
-FFs              |      23779 (2.77%)  
-LUTs             |      11595 (2.70%) 
+FFs              |      23846 (2.78%)  
+LUTs             |      11688 (2.72%) 
          
 ## More Information
  * [SDAccel User Guide](http://www.xilinx.com/support/documentation/sw_manuals/xilinx2015_1/ug1023-sdaccel-user-guide.pdf)
