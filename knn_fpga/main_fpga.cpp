@@ -225,7 +225,8 @@ int main(int argc, char *argv[]) {
   // set the argument list for the kernel2 command
   clSetKernelArg(kernel2, 0, sizeof(cl_mem), (void *)&d_distances); 
   clSetKernelArg(kernel2, 1, sizeof(cl_mem), (void *)&indices);
-  clSetKernelArg(kernel2, 2, sizeof(int), (void *)&resultsCount);
+  clSetKernelArg(kernel2, 2, sizeof(int), (void *)&numRecords);
+  clSetKernelArg(kernel2, 3, sizeof(int), (void *)&resultsCount);
      
   // enqueue kernel for execution
   size_t globalWorkSize2[1];
