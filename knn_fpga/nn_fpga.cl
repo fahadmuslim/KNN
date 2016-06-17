@@ -52,9 +52,16 @@ __attribute__((xcl_pipeline_workitems)) {
 __kernel __attribute__ ((reqd_work_group_size(WORK_GROUP_SIZE,1,1)))
 void NearestNeighbor (__global float *d_distances,
                       __global int *indices,
+                        const int numRecords,
                         const int resultsCount) {
   __local float dmin1; 
   int localId = get_local_id(0);
+  #ifdef GLOBAL_SIZE
+  int numR = GLOBAL_SIZE;
+  #else 
+  int numR = numRecords;  
+  #endif
+
   if (localId < resultsCount) {
       float dist1;
       float dmin = MAXFLOAT;
@@ -65,13 +72,13 @@ void NearestNeighbor (__global float *d_distances,
       }
      
       __attribute__((xcl_pipeline_loop))
-      for (int k = 0; k < WORK_GROUP_SIZE; k++) {
+      for (int k = 0; k < numR; k++) {
 	  dist1 = dist[k];
 	  if (dist1 < dmin && dist1 > dmin1) {
 	      dmin = dist1;
 	      count = k;
 	  }
-	  if (k == WORK_GROUP_SIZE-1) {
+	  if (k == numR-1) {
 	      dmin1 = dmin;
 	      indices[localId] = count;
 	      d_distances[localId] = dmin;
