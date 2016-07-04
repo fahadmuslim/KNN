@@ -95,7 +95,7 @@ int main(int argc, char *argv[]) {
   std::vector<cl_float2> locations;
   int i;
   char filename[1024];
-  int resultsCount=NUM_NEIGHBORS,quiet=0,timing=0;
+  int resultsCount=NUM_NEIGHBORS,quiet=0;
   float lat=QUERY_LAT,lng=QUERY_LNG;
   
   cl_context context;
@@ -234,42 +234,7 @@ int main(int argc, char *argv[]) {
   clEnqueueReadBuffer(command_queue, d_distances, CL_TRUE, 0, 
     sizeof(float) * numRecords, distances, 0, NULL, &readEvent);
 
-  if (timing) {
-    clFinish(command_queue);
-    cl_ulong eventStart,eventEnd,totalTime=0;
-    printf("# Records\tWrite(s) [size]\t\tKernel(s)\tRead(s)  [size]\t\tTotal(s)\n");
-    printf("%d        \t",numRecords);
-    
-    // Write Buffer
-    error = clGetEventProfilingInfo(writeEvent,CL_PROFILING_COMMAND_START,
-      sizeof(cl_ulong),&eventStart,NULL);
-    error = clGetEventProfilingInfo(writeEvent,CL_PROFILING_COMMAND_END,
-      sizeof(cl_ulong),&eventEnd,NULL);
-    printf("%f [%.2fMB]\t",(float)((eventEnd-eventStart)/1e9),
-      (float)((sizeof(cl_float2) * numRecords)/1e6));
-    totalTime += eventEnd-eventStart;
-
-    // Kernel
-    error = clGetEventProfilingInfo(kernelEvent,CL_PROFILING_COMMAND_START,
-      sizeof(cl_ulong),&eventStart,NULL);
-    error = clGetEventProfilingInfo(kernelEvent,CL_PROFILING_COMMAND_END,
-      sizeof(cl_ulong),&eventEnd,NULL);
-    printf("%f\t",(float)((eventEnd-eventStart)/1e9));
-    totalTime += eventEnd-eventStart;
-
-    // Read Buffer
-    error = clGetEventProfilingInfo(readEvent,CL_PROFILING_COMMAND_START,
-      sizeof(cl_ulong),&eventStart,NULL);
-    error = clGetEventProfilingInfo(readEvent,CL_PROFILING_COMMAND_END,
-      sizeof(cl_ulong),&eventEnd,NULL);
-    printf("%f [%.2fMB]\t",(float)((eventEnd-eventStart)/1e9),
-      (float)((sizeof(float) * numRecords)/1e6));
-    totalTime += eventEnd-eventStart;
-        
-    printf("%f\n\n",(float)(totalTime/1e9));
-  }
-
-  // return finalized data and release buffers
+   // return finalized data and release buffers
   clReleaseMemObject(d_locations);
   clReleaseMemObject(d_distances);
   clReleaseProgram(program);
