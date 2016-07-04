@@ -40,7 +40,7 @@ KNN
 -------------- | -----------------  
 **knn\_cpu** | Contains the "single kernel implementation" of the algorithm. The nearest neighbors identification in this implementation is done on the host.   
 **knn\_fpga** | Contains the "two kernel implementation" of the algorithm, which uses a memory architecture optimization provided by SDAccel that implements the global memories used to communicate between the kernels as streaming buffers on the FPGA Block RAMs. The nearest neighbor identification in this case is done on the FPGA.  
-**filelist.txt** | Contains the points of a reference data set (32768 points).  
+**filelist.txt** | Contains the points of a reference data set (294912 points).  
 **params.h** | Some constant parameters (see below).  
 **main\_cpu.cpp** | The host code for the implementation with nearest neighbor identification done on the host.  
 **nn\_cpu.cl** | The kernel which calculates all the distances and writes them to the host for nearest neighbors identification.  
@@ -85,35 +85,35 @@ The FPGA vs GPU performance comparison for the "knn\_cpu" and "knn\_fpga" implem
 
 **knn\_cpu**  
 
-Platform         |   Total Time | Sort Time (CPU) | Power(W)    |  Energy(J)   
+Platform         |   Total Time | Sort Time (CPU) | Power(W)    |  Energy(mJ)   
 :--------------- | ------------:| ---------------:| ----------: | ----------- 
-Virtex 7         |    0.587ms   |   0.45ms        |     0.412   |   0.000056  
-GTX 960          |    0.460ms   |   0.45ms        |     120     |   0.0012  
-K4200            |    0.483ms   |   0.47ms        |     108     |   0.0014 
+Virtex 7         |    5,24ms    |   4.0ms         |     0.422   |   0.523  
+GTX 960          |    3.04ms    |   3.0ms         |     120     |   4.4  
+K4200            |    3.05ms    |   3.0ms         |     108     |   5.6 
 
 Area Utilization |     Values     
 :--------------- | ------------  
 BRAMs            |      0   
 DSPs             |      12 (0.33%)  
-FFs              |      3141 (0.36%)   
-LUTs             |      2042 (0.47%)  
+FFs              |      3109 (0.36%)   
+LUTs             |      2006 (0.46%)  
  
 
 **knn\_fpga**
 
 Platform         |    Time      | Power(W) |  Energy(J)   
 :--------------- | ------------:| --------:| ----------  
-Virtex 7         |    0.136ms   |  3.033   |   0.00041  
-GTX 960          |    9.771ms   |  120     |   1.17252    
-K4200            |    34.64ms   |  108     |   3.741  
+Virtex 7         |    1.23ms    |  3.219   |   0.0039  
+GTX 960          |    0.93s     |  120     |   111.6    
+K4200            |    3.11s     |  108     |   335.88  
   
 
 Area Utilization |     Values     
 :--------------- | ------------  
-BRAMs            |      32 (2.18%)   
+BRAMs            |      1024 (69.66%)   
 DSPs             |      12 (0.33%)  
-FFs              |      23846 (2.78%)  
-LUTs             |      11688 (2.72%) 
+FFs              |      23906 (2.78%)  
+LUTs             |      12087 (2.81%) 
          
 ## More Information
  * [SDAccel User Guide](http://www.xilinx.com/support/documentation/sw_manuals/xilinx2015_1/ug1023-sdaccel-user-guide.pdf)
