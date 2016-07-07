@@ -66,7 +66,7 @@ The _k_ nearest neighbors, the given query point, and the total number of points
 
 ### Sample Output
 The sample output after a successful run would look like:
-<center>![alt text](./figures/sample_output.png)</center>
+<center>![alt text](./figures/sample_run.png)</center>
 <center>Figure 2: Sample Output after a successful run</center>  
     
 ## Performance Metrics
